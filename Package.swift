@@ -10,6 +10,8 @@ let package = Package(
         .library(
             name: "BookKit",
             targets: ["BookKit"]),
+        .library(name: "BookView",
+            targets: ["BookView"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -21,6 +23,8 @@ let package = Package(
         .target(
             name: "BookKit",
             dependencies: []),
+        .target(name: "BookView",
+            dependencies: ["BookKit"]),
         .testTarget(
             name: "BookKitTests",
             dependencies: ["BookKit"]),
