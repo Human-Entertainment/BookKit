@@ -8,7 +8,6 @@
 import Foundation
 import ZIPFoundation
 import XMLCoder
-import UIKit
 
 // MARK: - Book metadata
 /// ePub handler class
