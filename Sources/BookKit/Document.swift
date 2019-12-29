@@ -5,26 +5,17 @@
 //  Created by Bastian Inuk Christensen on 24/02/2019.
 //  Copyright © 2019 Bastian Inuk Christensen. All rights reserved.
 //
-#if os(iOS)
-import UIKit
 
-public typealias SysDocument = UIDocument
-#elseif os(macOS)
-import AppKit
-
-public typealias SysDocument = NSDocument
-#endif
-
-/// Convenience class for The two os' native Document type
-public class Document : SysDocument {
-    #if os(iOS)
-    override public func contents(forType typeName: String) throws -> Any {
-        // Encode your document with an instance of NSData or NSFileWrapper
-        return Data()
+/// Costum Document class for use for handling files 
+public class Document {
+    let data: Data
+    let fileURL: URL
+    init(fileURL: URL) throws {
+        self.fileURL = fileURL
+        do {
+            data = Data.init(contentsOf: URL)
+        } catch {
+            throw
+        }
     }
-    
-    override public func load(fromContents contents: Any, ofType typeName: String?) throws {
-        // Load your document from contents
-    }
-    #endif
 }
