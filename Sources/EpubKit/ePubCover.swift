@@ -5,12 +5,20 @@
 //  Created by Bastian Inuk Christensen on 06/12/2019.
 //
 
-import BookKit
+//import BookKit
+#if os(iOS)
+import UIKit
 
+typealias Image = UIImage
+#elseif os(macOS)
+import AppKit
+
+typealias Image = NSImage
+#endif
 // MARK: - Cover extractor
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
-    func extractCover(frame: CGRect) throws -> UIImage {
+    func extractCover(frame: CGRect) throws -> Image {
        // return try unpackEpub{ workDir -> UIImage in
             var coverName = ""
             
@@ -29,7 +37,7 @@ extension ePub {
                         coverURL.appendPathComponent(self.OEPBS)
                         coverURL.appendPathComponent(item.link)
                         let coverData = try Data(contentsOf: coverURL)
-                        let cover = UIImage(data: coverData)!
+                        let cover = Image(data: coverData)!
                         return cover
                     }
                 }

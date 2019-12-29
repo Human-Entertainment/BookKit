@@ -8,10 +8,15 @@
 import Foundation
 import ZIPFoundation
 import XMLCoder
-
+import BookKit
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#endif
 // MARK: - Book metadata
 /// ePub handler class
-class ePub {
+public class ePub {
     private let fileManager: FileManager
     private let workDir: URL
     private let compressedBook: Document
@@ -86,7 +91,9 @@ extension ePub {
         
         do {
             let xmlData = try Data(contentsOf: uncompressedBookURL.appendingPathComponent((rootfileXML.rootfiles?.rootfile?.path!)!))
+            #if DEBUG
             let xmlString = String(data: xmlData, encoding: .utf8)
+            #endif
             var packageXML = package()
             packageXML = try decoder.decode(package.self, from: xmlData)
             self.meta = packageXML.metadata
@@ -205,7 +212,6 @@ struct Spine: Codable {
 struct itemref: Codable {
     var idref: String
 }
-
 
 // MARK: - Custom errors
 enum XMLError: String, Error {
