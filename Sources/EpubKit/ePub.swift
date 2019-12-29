@@ -173,23 +173,23 @@ struct package: Codable {
 }
 
 // MARK: - EpubMetaData
-struct EpubMeta: Codable {
+public struct EpubMeta: Codable {
     public private(set) var title: String
     public private(set) var creator: [Creators]?
     public private(set) var meta: [Meta]
 }
 
-struct Creators: Codable {
+public struct Creators: Codable {
     let id: String?
     let value: String
 }
 
-struct Meta: Codable {
+public struct Meta: Codable {
     let name: String?
     let content: String?
 }
 
-struct Manifest: Codable {
+public struct Manifest: Codable {
     var item: [Items]
 }
 
