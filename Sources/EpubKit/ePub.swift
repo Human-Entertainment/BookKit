@@ -23,14 +23,14 @@ public class ePub {
     private let bookFolder: String
     private var coverLink: String?
     /// ePub metadata, use this to get information
-    private(set) var meta: EpubMeta? = nil
-    private(set) var manifest: Manifest? = nil
-    private(set) var pages: [String]
+    public private(set) var meta: EpubMeta? = nil
+    public private(set) var manifest: Manifest? = nil
+    public private(set) var pages: [String]
     private var spine: Spine? = nil
-    private(set) var OEPBS: String = ""
+    public private(set) var OEPBS: String = ""
     
     private var needsCleanup: Bool
-    private(set) var uncompressedBookURL: URL
+    public private(set) var uncompressedBookURL: URL
     
     public init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
@@ -167,16 +167,16 @@ fileprivate struct rootfile: Codable {
 }
 
 struct package: Codable {
-    private(set) var metadata: EpubMeta?
-    private(set) var manifest: Manifest?
-    private(set) var spine: Spine?
+    public private(set) var metadata: EpubMeta?
+    public private(set) var manifest: Manifest?
+    public private(set) var spine: Spine?
 }
 
 // MARK: - EpubMetaData
 struct EpubMeta: Codable {
-    private(set) var title: String
-    private(set) var creator: [Creators]?
-    private(set) var meta: [Meta]
+    public private(set) var title: String
+    public private(set) var creator: [Creators]?
+    public private(set) var meta: [Meta]
 }
 
 struct Creators: Codable {
