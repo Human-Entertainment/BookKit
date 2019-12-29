@@ -12,7 +12,7 @@ import Foundation
 public class Document {
     public let data: Data
     public let fileURL: URL
-    init(fileURL: URL) throws {
+    public init(fileURL: URL) throws {
         self.fileURL = fileURL
         do {
             data = try Data(contentsOf: fileURL)
