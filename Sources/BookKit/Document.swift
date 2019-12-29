@@ -10,14 +10,18 @@ import Foundation
 
 /// Costum Document class for use for handling files
 public class Document {
-    let data: Data
-    let fileURL: URL
+    public let data: Data
+    public let fileURL: URL
     init(fileURL: URL) throws {
         self.fileURL = fileURL
         do {
-            data = Data(contentsOf: fileURL)
+            data = try Data(contentsOf: fileURL)
         } catch {
-            throw
+            throw DocumentError.FileNotFound
         }
     }
+}
+
+enum DocumentError: Error {
+    case FileNotFound
 }
