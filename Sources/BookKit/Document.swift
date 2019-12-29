@@ -15,7 +15,7 @@ public class Document {
     init(fileURL: URL) throws {
         self.fileURL = fileURL
         do {
-            data = Data.init(contentsOf: URL)
+            data = Data(contentsOf: fileURL)
         } catch {
             throw
         }
