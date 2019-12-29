@@ -32,7 +32,7 @@ public class ePub {
     private var needsCleanup: Bool
     private(set) var uncompressedBookURL: URL
     
-    init(_ compressedBook: Document) throws {
+    public init(_ compressedBook: Document) throws {
         self.fileManager = FileManager()
         self.compressedBook = compressedBook
         self.workDir = fileManager.temporaryDirectory
