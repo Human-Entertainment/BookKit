@@ -9,16 +9,16 @@
 #if os(iOS)
 import UIKit
 
-typealias Image = UIImage
+public typealias Image = UIImage
 #elseif os(macOS)
 import AppKit
 
-typealias Image = NSImage
+public typealias Image = NSImage
 #endif
 // MARK: - Cover extractor
 extension ePub {
     /// Returns the cover image of a given book as `UIImage`
-    func extractCover(frame: CGRect) throws -> Image {
+    public func extractCover(frame: CGRect) throws -> Image {
        // return try unpackEpub{ workDir -> UIImage in
             var coverName = ""
             
