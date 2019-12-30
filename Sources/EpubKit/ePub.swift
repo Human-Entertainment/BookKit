@@ -45,13 +45,21 @@ public class ePub {
         guard let spine = self.spine else {
             throw XMLError.NotEpub
         }
-        self.pages = spine.itemref.compactMap { page in
+        guard let manifest = self.manifest else {
+            throw XMLError.NotEpub
+        }
+        self.pages = manifest.item.filter { item in
+            return spine.itemref.contains {$0.idref == item.name}
+        }.map { $0.link }
+            
+            /*spine.itemref.compactMap { page in
             if (self.manifest?.item.contains { $0.name == page.idref } ?? false) {
+                // this should be the link
                 return page.idref
             } else {
                 return nil
             }
-        }
+        }*/
         /*
         for page in self.spine!.itemref {
             for item in self.manifest!.item{
